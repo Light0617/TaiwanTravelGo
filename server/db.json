@@ -1,0 +1,116 @@
+{
+  "natures": [
+    {
+      "name": "Keelung Harbor",
+      "image": "assets/culture1.jpg",
+      "featured": "true",
+      "starts": "3",
+      "description": "Keelung Harbor is located at the northern tip of Taiwan Island, between Fugui Cape and Cape Bitou. The harbor is embraced by mountains to its east, west, and south with a narrow waterway approximately 2,000 meters in length and 400 meters in width that extend from the inner harbor in the southwest to the harbor mouth in the northwest. Featuring both military and commercial applications, Keelung Harbor serves as an excellent harbor in Northern Taiwan."
+    },
+    {
+      "name": "Miramar Entertainment Park Ferris Wheel",
+      "image": "assets/culture2.jpg",
+      "featured": "false",
+      "starts": "5",
+      "description": "The Miramar Entertainment Park is a new-age shopping and entertainment complex built with the idea of offering enough consumption and entertainment options to keep visitors occupied for a full-day stay. The most striking feature of this park, which was opened only at the end of 2004, is a 95-meter-high, 70-meter-in-diameter Ferris wheel that light up at night to add a strong touch of romance to the Taipei skyline."
+    },
+    {
+      "name": "101",
+      "image": "assets/culture3.jpg",
+      "featured": "true",
+      "starts": "5",
+      "description": "Located in the finest district Taipei has to offer, TAIPEI 101 is the largest engineering project ever in the history of the Taiwan construction business. Supported by a dozen or so domestic businesses, the TFC Corp. was fortunate to have local and international experts in charge of the planning, and world-class architect C.Y. Lee was responsible for the design of the project. The design transcends the uni-body concept and is based on the Chinese number 8, a numeral long considered lucky in Chinese culture. Eight-floor structural units are connected one by one on top of each other to form the whole. This kind of rhythmic aesthetic is new to skyscrapers"
+    },
+    {
+      "name": "Pingxi",
+      "image": "assets/culture4.jpg",
+      "featured": "false",
+      "starts": "3",
+      "description": "Pingxi and Shifen are just two of several towns alongside highway 106, a narrow back road that runs between southern Taipei and southern Keelung. Pingxi Sky Lantern Festival is one of the three most popular and well - known celebration event during the Lantern Festival. Since 1999, the Taipei County Government has devoted substantial resources to promote this festival, in a bid to promote it to become an international and multi - ethnic culture exchange activity. Through this festival, presenting the Sky Lantern tradition and the natural beauty of Pingxi to the public and prayers to the heavenly God and wishing for prosperity and peace for the nation and its citizens."
+    },
+    {
+      "name": "Dome of Light",
+      "image": "assets/culture5.jpg",
+      "featured": "false",
+      "starts": "4",
+      "description": "Situated at the Kaohsiung MRT transfer station for the Red Line and Orange Line (Formosa Boulevard Station), the Dome of Light was created by renowned artist Narcissus Quagliata. The dome is the world's largest public art installation made from individual pieces of colored glass. The work not only adds to the beauty of the station, but also adds a new dimension to the art life of the Kaohsiung and creates a new scenic spot in the city."
+    },
+    {
+      "name": "Juming Museum",
+      "image": "assets/culture6.jpg",
+      "featured": "false",
+      "starts": "5",
+      "description": "Born in Tongxiao, Miaoli in 1938, Juming a.k.a. Chu Chuan Taiis an art master in Taiwan. Juming Museum is surrounded by lush forests, ample space and infinite view. Next to Jin Mountain (Jinshan), Juming Museum is the largest outdoor art museum in Taiwan. The spacious museum presents Juming's creative works from 1987 to 1999. Master Juming himself participated in locating, designing and constructing this museum. After being exhibited in Tokyo, Hong Kong, Paris and Luxembourg, Juming's works have been shipped back to Taiwan and are presented in this outdoor museum. With 50 years of extensive experience from at home and abroad, art master Juming places his creations in Juming Museum, which is a place worth visiting for art lovers."
+    },
+    {
+      "name": "Heart of the Love River",
+      "image": "assets/culture7.jpg",
+      "featured": "false",
+      "starts": "4",
+      "description": "Located at the junction of Bo'ai 1st Road and Tongmeng 1st Road, the Heart of the Love River is in the upper reaches of the Love River between East Lake and West Lake. In between these lakes, there is a heart-shaped bridge. The beautiful bike routes and beautiful lakeside landscape here have become a quality leisure space for all in Kaohsiung."
+    },
+    {
+      "name": "Taichung Park",
+      "image": "assets/culture8.jpg",
+      "featured": "false",
+      "starts": "4",
+      "description": "Taichung Park is the designated spot of tourists. You can row the boat in the lake and enjoy the beautiful surrounding. The blue sky, white clouds and clear water will surely make you enjoy your stay."
+    },
+    {
+      "name": "North Coast & Guanyinshan National Scenic Area",
+      "image":"assets/mountain1.jpg",
+      "featured": "false",
+      "starts": "4",
+      "description": "The administrative area including bays and mountain ranges is full of attractions and recreational facilities: beaches, hiking trails, waterwheel parks, coral reef trenches, weathered rocks(Queen's Head, Fairy's Shoe, Ice Cream Rocks), streets with old buildings, puppet museum, Buddhist temples of long history, and many others. Start your adventure and take snapshots of the stunning beauty of Nature!"
+    },
+    {
+      "name": "Taroko National Park",
+      "image":"assets/mountain2.jpg",
+      "featured": "false",
+      "starts": "3",
+      "description": "Located on the east coast of Taiwan, Taroko National Park is best accessed from the city of Hualien. This huge park spans across Taichung, Nantou, and Hualien and is one of the nine national parks of the island. The main sight of the Taroko National Park is Taroko Gorge, after which the park was named. Taroko Gorge is famous for its abundant supply of marble, some of which were formed over 200 million years ago. Many visitors are left speechless due to the majesty of the gorge when they visit it for the first time."
+    },
+    {
+      "name": "Sun Moon Lake",
+      "image":"assets/mountain3.jpg",
+      "featured": "true",
+      "starts": "5",
+      "description": "Sun Moon Lake is in the Nantou County and is home to one of the aboriginal tribes of Taiwan – the Thao tribe. This lake is named so because the east side of the lake resembles a sun and its west side resembles a moon. Many people come here during sunrise and sunset, as the views during these hours are breathtaking. There is also a beautiful bike route around the lake that allows cyclists to enjoy the view from different vantage points."
+    },
+    {
+      "name": "Qingshui Cliff",
+      "image":"assets/mountain4.jpg",
+      "featured": "false",
+      "starts": "3",
+      "description": "Qingshui Cliff spans 21 kilometres on the east coast of Taiwan, and it is the highest coastal cliff on the island. Its tallest peak is named the Qingshui Mountain, which measures 2,408 m above the Pacific Ocean. The way the cliff plunges into the Pacific Ocean is amazing, and Qingshui Cliff is a popular photo spot for many visitors."
+    },
+    {
+      "name": "Juming Museum",
+      "image":"assets/mountain5.jpg",
+      "featured": "false",
+      "starts": "4",
+      "description": "Tianliao Moon World is a tract of barren land between Chongde Village and Gutin Village of Tianliao District. It has a dreary and desolate beauty of desert and is famous for its similarity to the landscape of the Moon surface."
+    },
+    {
+      "name": "Yuemeikeng Waterfall",
+      "image":"assets/mountain6.jpg",
+      "featured": "false",
+      "starts": "3",
+      "description": "A combination of steep terrain, hard rock, and heavy rainfall makes Taiwan a paradise for waterfall-lovers. Located in the Yilan County, the Yuemeikeng Waterfall is a short day trip from Taipei. Until recently, this waterfall was very little known. The hike to the waterfall is around one hour and is itself an adventure. as you need wade to through a narrow gorge. However, the view of the waterfall is well worth the hike."
+    },
+    {
+      "name": "Xitou Nature Education center",
+      "image":"assets/mountain7.jpg",
+      "featured": "false",
+      "starts": "4",
+      "description": "Xitou is located in the Phoenix hill of Lugu village, and is embraced by mountains from three sides. Its name is derived from the Chinese meaning: the origin of the river (Beishi River). Xitou has plenty of rains, and is cool and moist all the year round. Therefore, it is one of the most famous resort spots in summer and the most romantic place for new couples to spend their honeymoons. "
+    },
+    {
+      "name": "Beitou Thermal Valley",
+      "image":"assets/mountain8.jpg",
+      "featured": "false",
+      "starts": "5",
+      "description": "Historically one of Taiwan's 12 Great Sites, the springs at Thermal Valley have the highest temperatures in the Datun Mountains area, giving off an eerie sulphuric steam that rises from the surface of the pond that plays around in the breeze."
+    }
+  ]
+}

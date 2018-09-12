@@ -1,0 +1,58 @@
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto; }
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px; }
+
+.footer {
+  background-color: #a4dcea;
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px; }
+
+.jumbotron {
+  margin: 0px auto;
+  padding: 70px 30px;
+  background: #a4dcea;
+  color: floralwhite;
+  min-height: 150px; }
+
+.active {
+  background: #49727c; }
+
+.header {
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  -webkit-animation-name: "loops";
+  -webkit-animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite; }
+
+@-webkit-keyframes "loops" {
+  0% {
+    background-image: linear-gradient(to right bottom, rgba(164, 220, 234, 0.4), rgba(73, 114, 124, 0.4)), url("../assets/header1.jpg"); }
+  50% {
+    background-image: linear-gradient(to right bottom, rgba(164, 220, 234, 0.4), rgba(73, 114, 124, 0.4)), url("../assets/header2.jpg");
+    opacity: 1; }
+  100% {
+    background-image: linear-gradient(to right bottom, rgba(164, 220, 234, 0.4), rgba(73, 114, 124, 0.4)), url("../assets/header3.jpg");
+    opacity: 1; } }
+
+address {
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f; }
+
+.navbar-dark {
+  background-color: #49727c; }
+
+.login {
+  background-color: #a4dcea; }
+
+.loginButton {
+  color: white; }

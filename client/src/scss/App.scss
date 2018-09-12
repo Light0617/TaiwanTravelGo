@@ -1,0 +1,91 @@
+@import './_variables';
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
+}
+
+.footer{
+  background-color: $background-light;
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+}
+
+.jumbotron {
+    @include zero-margin(70px,30px);
+    background: $background-light ;
+    color:floralwhite;
+    min-height: 150px;
+}
+.active {
+    background: $background-dark;
+}
+
+.header{
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  clip-path: polygon(0 0,100% 0, 100% 75vh, 0 100%);
+  -webkit-animation-name: "loops";
+  -webkit-animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes "loops" {
+  0% {
+    background-image: linear-gradient(
+    to right bottom,
+        rgba($background-light,0.4),
+        rgba($background-dark,0.4)),
+    url('../assets/header1.jpg');
+  }
+
+   50% {
+     background-image: linear-gradient(
+     to right bottom,
+         rgba($background-light,0.4),
+         rgba($background-dark,0.4)),
+     url('../assets/header2.jpg');
+     opacity: 1;
+   }
+   100% {
+     background-image: linear-gradient(
+     to right bottom,
+         rgba($background-light,0.4),
+         rgba($background-dark,0.4)),
+     url('../assets/header3.jpg');
+     opacity: 1;
+   }
+}
+
+
+address{
+  font-size:80%;
+  margin:0px;
+  color:#0f0f0f;
+}
+
+.navbar-dark {
+  background-color: $background-dark;
+}
+
+.login {
+  background-color: $background-light;
+}
+
+.loginButton {
+  color: white;
+}

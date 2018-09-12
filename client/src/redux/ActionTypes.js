@@ -1,0 +1,3 @@
+export const NATURES_LOADING = 'NATURES_LOADING';
+export const NATURES_FAILED = 'NATURES_FAILED';
+export const ADD_NATURES = 'ADD_NATURES';
