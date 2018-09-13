@@ -1,12 +1,13 @@
 import React from 'react';
 
-function Nature() {
-  return (
+function Favorite() {
+  return(
     <div className="container2">
       <div className="row">
-        <h2>Nature</h2>
+        <h2>Favorite</h2>
       </div>
     </div>
   );
 }
-export default Nature;
+
+export default Favorite;

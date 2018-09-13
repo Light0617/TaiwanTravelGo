@@ -1,12 +1,13 @@
 import React from 'react';
 
-function Nature() {
+function Profile() {
   return (
     <div className="container2">
       <div className="row">
-        <h2>Nature</h2>
+        <h2>Profile</h2>
       </div>
     </div>
   );
 }
-export default Nature;
+
+export default Profile;
