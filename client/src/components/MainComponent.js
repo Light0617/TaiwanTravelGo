@@ -45,6 +45,16 @@ class Main extends Component {
       );
     }
 
+    const NaturePage = () => {
+      return (
+        <Nature
+          natures={this.props.natures.natures}
+          naturesLoading={this.props.natures.isLoading}
+          naturesErrMess={this.props.natures.errMess}
+        />
+      );
+    }
+
     return (
       <div>
         <Header />
@@ -54,7 +64,7 @@ class Main extends Component {
               <Switch location={this.props.location}>
                 <Route path='/home' component={HomePage} />
                 <Route path='/about' component={About} />
-                <Route path='/nature' component={Nature} />
+                <Route path='/nature' component={NaturePage} />
                 <Route path='/traveller' component={Traveller} />
                 <Route path='/favorite' component={Favorite} />
                 <Route path='/profile' component={Profile} />

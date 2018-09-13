@@ -1,8 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
-import { FadeTransform } from 'react-animation-components';
 
 function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {
@@ -16,7 +14,7 @@ function RenderCard({ item, isLoading, errMess }) {
   } else {
     return (
       <Card>
-        <CardImg src={item.image} alt={item.name} height="650px"/>
+        <CardImg src={item.image} alt={item.name} height="650px" />
         <CardBody>
           <CardTitle>{item.name}</CardTitle>
           {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
@@ -28,29 +26,29 @@ function RenderCard({ item, isLoading, errMess }) {
 }
 
 function Home(props) {
-  console.log(props.natures);
+
+  const HomeItemList = props.natures.map((nature) => {
+    return (
+      <div className="col-12 col-md m-1" key={nature._id}>
+        <RenderCard
+          item={nature}
+          isLoading={props.naturesLoading}
+          errMess={props.naturesErrMess}
+        />
+      </div>
+    );
+  });
+
   return (
-    <div className="row align-items-start">
-      <div className="col-12 col-md m-1">
-        <RenderCard
-          item={props.natures[0]}
-          isLoading={props.naturesLoading}
-          errMess={props.naturesErrMess}
-        />
+    <div className="container2">
+      <div className="row">
+        <div className="col-12">
+          <h1>Home</h1>
+          <hr />
+        </div>
       </div>
-      <div className="col-12 col-md m-1">
-        <RenderCard
-          item={props.natures[1]}
-          isLoading={props.naturesLoading}
-          errMess={props.naturesErrMess}
-        />
-      </div>
-      <div className="col-12 col-md m-1">
-        <RenderCard
-          item={props.natures[2]}
-          isLoading={props.naturesLoading}
-          errMess={props.naturesErrMess}
-        />
+      <div className="row align-items-start">
+        {HomeItemList}
       </div>
     </div>
   );
