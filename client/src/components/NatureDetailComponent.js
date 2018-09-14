@@ -175,6 +175,10 @@ function NatureDetailContent({ props }) {
       </div>
     )
   } else {
+    console.log('start');
+    console.log(new Date().toISOString());
+    console.log(props.comments);
+    console.log('end');
     return (
       <div className='container2'>
         <div className='row'>

@@ -12,17 +12,21 @@ import Favorite from './FavoriteComponent';
 import Profile from './ProfileComponent';
 import NatureDetail from './NatureDetailComponent';
 
-import { fetchNatures } from '../redux/ActionCreators';
+import { fetchNatures, fetchComments, postComment } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
-    natures: state.natures
+    natures: state.natures,
+    comments: state.comments,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchNatures: () => dispatch(fetchNatures())
+  fetchNatures: () => dispatch(fetchNatures()),
+  fetchComments: () => dispatch(fetchComments()),
+  postComment: (dishId, rating, author, comment) =>
+    dispatch(postComment(dishId, rating, author, comment))
 });
 
 class Main extends Component {
@@ -32,6 +36,7 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.fetchNatures();
+    this.props.fetchComments();
   }
 
   render() {
@@ -62,6 +67,10 @@ class Main extends Component {
           nature={this.props.natures.natures.filter((nature) => nature._id === match.params.natureId)[0]}
           isLoading={this.props.natures.isLoading}
           errMess={this.props.natures.errMess}
+
+          comments={this.props.comments.comments.filter((comment)=>comment.natureId === match.params.natureId)}
+          commentsErrMess={this.props.comments.errMess}
+          postComment={this.props.postComment}
         />
       )
     }
