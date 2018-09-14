@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function FavoriteContent(props) {
   return (
     <div></div>
@@ -7,7 +8,6 @@ function FavoriteContent(props) {
 }
 
 function Favorite(props) {
-
   return(
     <div className="container2">
       <div className="row">

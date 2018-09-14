@@ -7,7 +7,6 @@ function TravellerContent(props) {
 }
 
 function Traveller(props) {
-  
 
   return(
     <div className="container2">

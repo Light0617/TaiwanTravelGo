@@ -7,6 +7,7 @@ function ProfileContent(props) {
 }
 
 function Profile(props) {
+
   return (
     <div className="container2">
       <div className="row">
