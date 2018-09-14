@@ -1,10 +1,23 @@
 import React from 'react';
 
-function Favorite() {
+function FavoriteContent(props) {
+  return (
+    <div></div>
+  )
+}
+
+function Favorite(props) {
+
   return(
     <div className="container2">
       <div className="row">
-        <h2>Favorite</h2>
+        <div className="col-12">
+          <h1>Favorite</h1>
+          <hr />
+        </div>
+      </div>
+      <div className="row">
+        <favoriteContent props = {props}/>
       </div>
     </div>
   );

@@ -1,10 +1,22 @@
 import React from 'react';
 
-function Profile() {
+function ProfileContent(props) {
+  return (
+    <div></div>
+  );
+}
+
+function Profile(props) {
   return (
     <div className="container2">
       <div className="row">
-        <h2>Profile</h2>
+        <div className="col-12">
+          <h1>Profile</h1>
+          <hr />
+        </div>
+      </div>
+      <div className="row">
+        <profileContent props = {props}/>
       </div>
     </div>
   );

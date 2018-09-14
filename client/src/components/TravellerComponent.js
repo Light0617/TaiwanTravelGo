@@ -1,10 +1,24 @@
 import React from 'react';
 
-function Traveller() {
+function TravellerContent(props) {
+  return (
+    <div></div>
+  )
+}
+
+function Traveller(props) {
+  
+
   return(
     <div className="container2">
       <div className="row">
-        <h2>Traveller</h2>
+        <div className="col-12">
+          <h1>Traveller</h1>
+          <hr />
+        </div>
+      </div>
+      <div className="row">
+        <TravellerContent props = {props}/>
       </div>
     </div>
   );
