@@ -10,6 +10,7 @@ import About from './AboutComponent';
 import Traveller from './TravellerComponent';
 import Favorite from './FavoriteComponent';
 import Profile from './ProfileComponent';
+import NatureDetail from './NatureDetailComponent';
 
 import { fetchNatures } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -55,6 +56,16 @@ class Main extends Component {
       );
     }
 
+    const NatureWithId = ({match}) => {
+      return (
+        <NatureDetail
+          nature={this.props.natures.natures.filter((nature) => nature._id === match.params.natureId)[0]}
+          isLoading={this.props.natures.isLoading}
+          errMess={this.props.natures.errMess}
+        />
+      )
+    }
+
     return (
       <div>
         <Header />
@@ -64,11 +75,12 @@ class Main extends Component {
               <Switch location={this.props.location}>
                 <Route path='/home' component={HomePage} />
                 <Route path='/about' component={About} />
-                <Route path='/nature' component={NaturePage} />
+                <Route exact path='/nature' component={NaturePage} />
+                <Route path='/nature/:natureId' component={NatureWithId} />
                 <Route path='/traveller' component={Traveller} />
                 <Route path='/favorite' component={Favorite} />
                 <Route path='/profile' component={Profile} />
-                <Redirect to="/home" />
+                <Redirect to='/home' />
               </Switch>
             </CSSTransition>
           </TransitionGroup>

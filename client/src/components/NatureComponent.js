@@ -1,15 +1,15 @@
 import React from 'react';
-import { Card, CardImg, CardFooter, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 
-function RenderNatureItem ({nature, onClick}) {
+function RenderNatureItem({ nature, onClick }) {
   return (
     <Card>
-      <Link to = {`/nautre/${nature._id}`}>
-        <CardImg width="100%" height="600px" src = {nature.image} alt={nature.name} />
+      <Link to={`/nature/${nature._id}`}>
+        <CardImg width="100%" height="600px" src={nature.image} alt={nature.name} />
         <CardFooter>
-          <h3> {nature.name} </h3>  
+          <h3> {nature.name} </h3>
         </CardFooter>
       </Link>
     </Card>
@@ -28,13 +28,15 @@ function Nature(props) {
         </div>
       );
     } else if (props.naturesErrMess !== null) {
-      <div className="container2">
-        <div className="row">
-          <div className="col-12">
-            <h4>{props.naturesErrMess}</h4>
+      return (
+        <div className="container2">
+          <div className="row">
+            <div className="col-12">
+              <h4>{props.naturesErrMess}</h4>
+            </div>
           </div>
         </div>
-      </div>
+      );
     } else {
       const natureList = props.natures.map((nature) => {
         return (
@@ -43,11 +45,11 @@ function Nature(props) {
           </div>
         );
       });
-      return  natureList;
+      return natureList;
     }
   }
 
-  
+
   return (
     <div className="container2">
       <div className="row">

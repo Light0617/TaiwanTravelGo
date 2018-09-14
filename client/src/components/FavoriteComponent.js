@@ -17,7 +17,7 @@ function Favorite(props) {
         </div>
       </div>
       <div className="row">
-        <favoriteContent props = {props}/>
+        <FavoriteContent props = {props}/>
       </div>
     </div>
   );

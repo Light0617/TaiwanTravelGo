@@ -1,13 +1,13 @@
 import React from 'react';
 import { Media, Card, CardHeader, CardBody } from 'reactstrap';
 
-function AboutContent(props) {
+function AboutContent({heading, srcIp}) {
   return (
     <div className="row">
       <div className="col-7">
         <Card>
           <CardHeader>
-            <Media heading>{props.heading}</Media>
+            <Media heading>{heading}</Media>
           </CardHeader>
         </Card>
       </div>
@@ -15,7 +15,7 @@ function AboutContent(props) {
         <Card>
           <CardBody>
             <iframe width="560" height="315"
-              src={props.srcIp}
+              src={srcIp} title={heading}
               frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
           </CardBody>
         </Card>

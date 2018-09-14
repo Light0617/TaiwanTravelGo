@@ -17,7 +17,7 @@ function Profile(props) {
         </div>
       </div>
       <div className="row">
-        <profileContent props = {props}/>
+        <ProfileContent props = {props}/>
       </div>
     </div>
   );
