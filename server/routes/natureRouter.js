@@ -14,8 +14,8 @@ NatureRouter.route('/')
   Natures.find({})
   .then((natures) => {
     res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(natures);
+    res.setHeader('Content-Type', 'application/json');
+    res.json(natures);
   }, (err) => next(err))
   .catch((err) => next(err));
 })

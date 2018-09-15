@@ -112,5 +112,28 @@
       "starts": "5",
       "description": "Historically one of Taiwan's 12 Great Sites, the springs at Thermal Valley have the highest temperatures in the Datun Mountains area, giving off an eerie sulphuric steam that rises from the surface of the pond that plays around in the breeze."
     }
+  ],
+  "comemnts": [
+    {
+      "natureId": "5b98b7c948d7df125561d778",
+      "comment": "good",
+      "author": "Tom",
+      "rating": "3",
+      "date": "2018-09-14T06:04:12.385Z"
+    },
+    {
+      "natureId": "5b98b7c948d7df125561d778",
+      "comment": "great",
+      "author": "Sam",
+      "rating": "4",
+      "date": "2018-09-14T06:04:12.385Z"
+    },
+    {
+      "natureId": "5b98b7c948d7df125561d778",
+      "comment": "awesome",
+      "author": "Alice",
+      "rating": "5",
+      "date": "2018-09-14T06:04:12.385Z"
+    }
   ]
 }

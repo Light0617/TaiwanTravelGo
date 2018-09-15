@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 
 const natureRouter = require('./routes/natureRouter');
-
+const NatureCommentRouter = require('./routes/natureCommentRouter')
 
 const app = express();
 
@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/natures', natureRouter);
+app.use('/comments', NatureCommentRouter);
 
 app.get('*', (req, res) => {
   res.end('hello world');
