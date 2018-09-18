@@ -12,19 +12,21 @@ import Favorite from './FavoriteComponent';
 import Profile from './ProfileComponent';
 import NatureDetail from './NatureDetailComponent';
 
-import { fetchNatures, fetchComments, postComment } from '../redux/ActionCreators';
+import { fetchNatures, fetchComments, postComment, fetchTravellers } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
     natures: state.natures,
     comments: state.comments,
+    travellers: state.travellers
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   fetchNatures: () => dispatch(fetchNatures()),
   fetchComments: () => dispatch(fetchComments()),
+  fetchTravellers: () => dispatch(fetchTravellers()),
   postComment: (dishId, rating, author, comment) =>
     dispatch(postComment(dishId, rating, author, comment))
 });
@@ -37,6 +39,7 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchNatures();
     this.props.fetchComments();
+    this.props.fetchTravellers();
   }
 
   render() {
@@ -59,6 +62,16 @@ class Main extends Component {
           naturesErrMess={this.props.natures.errMess}
         />
       );
+    }
+
+    const TravellerPage = () => {
+      return (
+        <Traveller
+          travellers={this.props.travellers.travellers.filter((person) => person.admin === false)}
+          travellersLoading={this.props.travellers.isLoading}
+          travellersErrMess={this.props.travellers.errMess}
+        />
+      )
     }
 
     const NatureWithId = ({match}) => {
@@ -86,7 +99,7 @@ class Main extends Component {
                 <Route path='/about' component={About} />
                 <Route exact path='/nature' component={NaturePage} />
                 <Route path='/nature/:natureId' component={NatureWithId} />
-                <Route path='/traveller' component={Traveller} />
+                <Route path='/traveller' component={TravellerPage} />
                 <Route path='/favorite' component={Favorite} />
                 <Route path='/profile' component={Profile} />
                 <Redirect to='/home' />

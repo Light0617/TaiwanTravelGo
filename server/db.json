@@ -142,7 +142,7 @@
       "password": "1234",
       "firstname": "light",
       "lastname": "Lee",
-      "image": "user1.jpg",
+      "image": "assets/user1.jpg",
       "admin": "true"
     },
     {
@@ -150,7 +150,7 @@
       "password": "1234",
       "firstname": "Rick",
       "lastname": "Smith",
-      "image": "user2.jpg",
+      "image": "assets/user2.jpg",
       "admin": "false"
     },
     {
@@ -158,7 +158,7 @@
       "password": "1234",
       "firstname": "Morty",
       "lastname": "Smith",
-      "image": "user3.jpg",
+      "image": "assets/user3.jpg",
       "admin": "false"
     },
     {
@@ -166,7 +166,7 @@
       "password": "1234",
       "firstname": "John",
       "lastname": "Snow",
-      "image": "user4.jpg",
+      "image": "assets/user4.jpg",
       "admin": "false"
     },
     {
@@ -174,7 +174,7 @@
       "password": "1234",
       "firstname": "Daenerys",
       "lastname": "Targaryen",
-      "image": "user5.jpg",
+      "image": "assets/user5.jpg",
       "admin": "false"
     }
   ]

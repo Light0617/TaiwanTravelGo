@@ -16,7 +16,7 @@ export const naturesFailed = (errMess) => ({
 export const addNatures = (natures) => ({
   type: ActionTypes.ADD_NATURES,
   payload: natures
-})
+});
 
 export const fetchNatures = () => (dispatch) => {
   dispatch(naturesLoading(true));
@@ -116,3 +116,43 @@ export const postComment = (natureId, rating, author, comment) => (dispatch) => 
     console.log('post comments', error.message);
   });
 };
+
+
+
+/**
+ * Traveller
+ */
+
+export const travellersLoading = () => ({
+  type: ActionTypes.TRAVELLERS_LOADING
+});
+
+export const travellersFailed = (errMess) => ({
+  type: ActionTypes.TRAVELLERS_FAILED,
+  payload: errMess
+});
+
+export const addTravellers = (travellers) => ({
+  type: ActionTypes.ADD_TRAVELLERS,
+  payload: travellers
+});
+
+export const fetchTravellers = () => (dispatch) => {
+  dispatch(travellersLoading(true));
+
+  return fetch(baseUrl + 'users')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    }, error => {
+      var errMess = new Error(error.message);
+      throw errMess;
+    })
+    .then(response => response.json())
+    .then(travellers => dispatch(addTravellers(travellers)));
+}
