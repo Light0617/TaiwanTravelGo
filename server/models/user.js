@@ -12,9 +12,21 @@ var User = new Schema({
       type: String,
         default: ''
     },
-    admin:   {
+    admin: {
         type: Boolean,
         default: false
+    },
+    image: {
+        type: String,
+        default: ''
+    },
+    numberOfComments: {
+        type: Number,
+        default: 0
+    },
+    numberOfFavorite: {
+        type: Number,
+        default: 0
     }
 });
 

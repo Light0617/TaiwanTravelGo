@@ -135,5 +135,47 @@
       "rating": "5",
       "date": "2018-09-14T06:04:12.385Z"
     }
+  ],
+  "users": [
+    {
+      "username" : "light0617",
+      "password": "1234",
+      "firstname": "light",
+      "lastname": "Lee",
+      "image": "user1.jpg",
+      "admin": "true"
+    },
+    {
+      "username" : "Rick",
+      "password": "1234",
+      "firstname": "Rick",
+      "lastname": "Smith",
+      "image": "user2.jpg",
+      "admin": "false"
+    },
+    {
+      "username" : "Morty",
+      "password": "1234",
+      "firstname": "Morty",
+      "lastname": "Smith",
+      "image": "user3.jpg",
+      "admin": "false"
+    },
+    {
+      "username" : "John",
+      "password": "1234",
+      "firstname": "John",
+      "lastname": "Snow",
+      "image": "user4.jpg",
+      "admin": "false"
+    },
+    {
+      "username" : "Daenerys",
+      "password": "1234",
+      "firstname": "Daenerys",
+      "lastname": "Targaryen",
+      "image": "user5.jpg",
+      "admin": "false"
+    }
   ]
 }

@@ -1,14 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+var passport = require('passport');
+var authenticate = require('./authenticate');
 
 const config = require('./config');
 
 const natureRouter = require('./routes/natureRouter');
-const NatureCommentRouter = require('./routes/natureCommentRouter')
+const natureCommentRouter = require('./routes/natureCommentRouter');
+const userRouter = require('./routes/userRouter');
 
 const app = express();
 
-const mongoose = require('mongoose');
 const url = config.mongoUrl;
 const connect = mongoose.connect(url);
 connect.then((db) => {
@@ -19,13 +23,15 @@ connect.then((db) => {
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
 
 app.get('/', (req, res) => {
   res.end('hello world');
 });
 
 app.use('/natures', natureRouter);
-app.use('/comments', NatureCommentRouter);
+app.use('/comments', natureCommentRouter);
+app.use('/users', userRouter);
 
 app.get('*', (req, res) => {
   res.end('hello world');
