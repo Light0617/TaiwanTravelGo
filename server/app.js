@@ -10,6 +10,7 @@ const config = require('./config');
 const natureRouter = require('./routes/natureRouter');
 const natureCommentRouter = require('./routes/natureCommentRouter');
 const userRouter = require('./routes/userRouter');
+const favoriteRouter = require('./routes/favoriteRouter');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 app.use('/natures', natureRouter);
 app.use('/comments', natureCommentRouter);
 app.use('/users', userRouter);
+app.use('/favorites', favoriteRouter);
 
 app.get('*', (req, res) => {
   res.end('hello world');

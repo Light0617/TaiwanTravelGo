@@ -11,7 +11,7 @@ NatureRouter.use(bodyParser.json());
 NatureRouter.route('/')
 .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
 .get(cors.cors, (req, res, next) => {
-  Natures.find({})
+  Natures.find(req.query)
   .then((natures) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
