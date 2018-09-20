@@ -9,37 +9,10 @@ const cors = require('./cors');
 var router = express.Router();
 router.use(bodyParser.json());
 
-router.route('/')
-.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-.get(cors.cors, (req, res, next) => {
-  User.find({})
-    .then((users) => {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.json(users);
-    }, (err) => next(err))
-    .catch((err) => next(err));
-})
-.post((req, res, next) => {
-  User.create(req.body)
-  .then((user) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json(user);
-  }, (err) => next(err))
-  .catch((err) => next(err));
-})
-.delete((req, res, next) => {
-  User.remove({})
-  .then((resp) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json(resp);
-  }, (err) => next(err))
-  .catch((err) => next(err));
-})
 
-router.post('/signup', cors.corsWithOptions, (req, res, next) => {
+
+router.post('/signup', cors.cors, (req, res, next) => {
+  console.log("okok");
   User.register(new User({username: req.body.username}),
     req.body.password, (err, user) => {
     if(err) {
@@ -48,6 +21,7 @@ router.post('/signup', cors.corsWithOptions, (req, res, next) => {
       res.json({err: err});
     }
     else {
+      console.log(req.body);
       if (req.body.firstname)
         user.firstname = req.body.firstname;
       if (req.body.lastname)
@@ -74,7 +48,9 @@ router.post('/signup', cors.corsWithOptions, (req, res, next) => {
 });
 
 
-router.post('/login', cors.corsWithOptions, (req, res, next) => {
+router.route('/login')
+.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+.post(cors.cors, (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err)
       return next(err);
@@ -116,8 +92,73 @@ router.get('/checkJWTToken', cors.corsWithOptions, (req, res) => {
   }) (req, res);
 });
 
-router.post('/logout', cors.corsWithOptions, (req, res, next) => {
-  passport.dest
+
+
+
+router.route('/')
+.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+.get(cors.cors, (req, res, next) => {
+  User.find({})
+    .then((users) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(users);
+    }, (err) => next(err))
+    .catch((err) => next(err));
 })
+.post((req, res, next) => {
+  User.create(req.body)
+  .then((user) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(user);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+})
+.delete((req, res, next) => {
+  User.remove({})
+  .then((resp) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(resp);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+});
+
+router.route('/:userId')
+.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+.get(cors.cors, (req, res, next) => {
+  User.findById(req.params.userId)
+    .then((user) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(user);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
+.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin,(req, res, next) => {
+  res.statusCode = 403;
+  res.end('POST operation not supported on /user/'+ req.params.userId);
+})
+.put(cors.cors, (req, res, next) => {
+  User.findByIdAndUpdate(req.params.userId, {
+    $set: req.body
+  }, { new: true })
+  .then((user) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(user);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+})
+.delete((req, res, next) => {
+  User.findByIdAndRemove(req.params.userId)
+  .then((resp) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(resp);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+});
 
 module.exports = router;

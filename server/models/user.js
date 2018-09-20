@@ -18,7 +18,7 @@ var User = new Schema({
     },
     image: {
         type: String,
-        default: ''
+        default: 'assets/default.jpg'
     },
     numberOfComments: {
         type: Number,

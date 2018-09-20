@@ -118,7 +118,11 @@ class Main extends Component {
 
     return (
       <div>
-        <Header />
+        <Header 
+          auth = {this.props.auth}
+          loginUser={this.props.loginUser}
+          logoutUser={this.props.logoutUser}
+        />
         <div>
           <TransitionGroup>
             <CSSTransition key={this.props.location.key} classNames="page" timeout={250}>
@@ -129,7 +133,7 @@ class Main extends Component {
                 <Route path='/nature/:natureId' component={NatureWithId} />
                 <Route path='/traveller' component={TravellerPage} />
                 <PrivateRoute exact path='/favorite' component={FavoritePage} />
-                <PrivateRoute exact path='/profile' component={Profile} />
+                <PrivateRoute exact path='/profile' component={() => <Profile user={this.props.auth.user}/>} />
                 <Redirect to='/home' />
               </Switch>
             </CSSTransition>

@@ -35,7 +35,6 @@ function RenderTravellerItem({ traveller }) {
 
 
 function TravellerContent({ props }) {
-  console.log(JSON.stringify(props));
   if (props.travellersLoading) {
     return (
       <div className="container2">

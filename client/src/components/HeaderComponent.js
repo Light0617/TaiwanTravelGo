@@ -17,6 +17,7 @@ class Header extends Component {
     this.toggleNav = this.toggleNav.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   toggleModal() {
@@ -33,8 +34,13 @@ class Header extends Component {
 
   handleLogin(event) {
     this.toggleModal();
+    this.props.loginUser({username: this.username.value, password: this.password.value});
     event.preventDefault();
   }
+
+  handleLogout() {
+    this.props.logoutUser();
+}
 
   render() {
     return (
@@ -64,9 +70,27 @@ class Header extends Component {
             </Nav>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg loginButton"></span> 
-                  <span className="loginButton"> Login </span>
-                </Button>
+                { !this.props.auth.isAuthenticated 
+                  ? 
+                  <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg loginButton"></span> 
+                    <span className="loginButton"> Login </span>
+                    { this.props.auth.isFetching
+                      ? <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                      : null
+                    }
+                  </Button>
+                  : 
+                  <div>
+                      <Button outline onClick={this.handleLogout}>
+                        <span className="fa fa-sign-out fa-lg"></span> {this.props.auth.user.username}, Logout
+                        { this.props.auth.isFetching
+                          ? <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                          : null
+                        }
+                      </Button>
+                  </div>
+                }
+              
               </NavItem>
             </Nav>
           </Collapse>
