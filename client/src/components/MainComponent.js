@@ -8,27 +8,36 @@ import Home from './HomeComponent';
 import Nature from './NatureComponent';
 import About from './AboutComponent';
 import Traveller from './TravellerComponent';
-import Favorite from './FavoriteComponent';
+import Favorites from './FavoriteComponent';
 import Profile from './ProfileComponent';
 import NatureDetail from './NatureDetailComponent';
 
-import { fetchNatures, fetchComments, postComment, fetchTravellers } from '../redux/ActionCreators';
+import { fetchNatures, fetchComments, postComment, fetchTravellers, 
+  loginUser, logoutUser, fetchFavorites, postFavorite, deleteFavorite } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
+    auth: state.auth,
     natures: state.natures,
     comments: state.comments,
-    travellers: state.travellers
+    travellers: state.travellers,
+    favorites: state.favorites
   }
 }
 
 const mapDispatchToProps = dispatch => ({
+  loginUser: (creds) => dispatch(loginUser(creds)),
+  logoutUser: () => dispatch(logoutUser()),
+
   fetchNatures: () => dispatch(fetchNatures()),
   fetchComments: () => dispatch(fetchComments()),
   fetchTravellers: () => dispatch(fetchTravellers()),
-  postComment: (dishId, rating, author, comment) =>
-    dispatch(postComment(dishId, rating, author, comment))
+  postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+
+  fetchFavorites: () => dispatch(fetchFavorites()),
+  postFavorite: (natureId) => dispatch(postFavorite(natureId)),
+  deleteFavorite: (natureId) => dispatch(deleteFavorite(natureId)),
 });
 
 class Main extends Component {
@@ -40,9 +49,21 @@ class Main extends Component {
     this.props.fetchNatures();
     this.props.fetchComments();
     this.props.fetchTravellers();
+    this.props.fetchFavorites();
   }
 
   render() {
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        this.props.auth.isAuthenticated
+          ? <Component {...props} />
+          : <Redirect to={{
+              pathname: '/home',
+              state: { from: props.location }
+            }} />
+      )} />
+    );
 
     const HomePage = () => {
       return (
@@ -74,6 +95,13 @@ class Main extends Component {
       )
     }
 
+    const FavoritePage = () => {
+      <Favorites
+        favorites={this.props.favorites}
+        deleteFavorite={this.props.deleteFavorite}
+      />
+    }
+
     const NatureWithId = ({match}) => {
       return (
         <NatureDetail
@@ -100,8 +128,8 @@ class Main extends Component {
                 <Route exact path='/nature' component={NaturePage} />
                 <Route path='/nature/:natureId' component={NatureWithId} />
                 <Route path='/traveller' component={TravellerPage} />
-                <Route path='/favorite' component={Favorite} />
-                <Route path='/profile' component={Profile} />
+                <PrivateRoute exact path='/favorite' component={FavoritePage} />
+                <PrivateRoute exact path='/profile' component={Profile} />
                 <Redirect to='/home' />
               </Switch>
             </CSSTransition>

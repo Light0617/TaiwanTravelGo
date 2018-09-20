@@ -15,7 +15,6 @@ FavoriteRouter.route('/')
   .populate('user')
   .populate('natures')
   .exec((err, favorite) => {
-    console.log("id=" + req.user._id);
     if(err) return next(err);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
