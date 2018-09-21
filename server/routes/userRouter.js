@@ -12,7 +12,6 @@ router.use(bodyParser.json());
 
 
 router.post('/signup', cors.cors, (req, res, next) => {
-  console.log("okok");
   User.register(new User({username: req.body.username}),
     req.body.password, (err, user) => {
     if(err) {

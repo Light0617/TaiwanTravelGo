@@ -14,7 +14,7 @@ import { imgBaseUrl } from '../shared/baseUrl';
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
-function RenderNature({ nature }) {
+function RenderNature({ nature, favorite, postFavorite }) {
   if (nature != null) {
     return (
       <div className='col-12 col-md-5 m-1'>
@@ -25,6 +25,14 @@ function RenderNature({ nature }) {
           }}>
           <Card>
             <CardImg top src={imgBaseUrl + nature.image} alt={nature.name} />
+            <Button outline color='primary' 
+                    onClick={() => favorite ? console.log('Already favorite') : postFavorite(nature._id)}>
+              { favorite ? 
+                  <span className="fa fa-heart"></span>
+                  :
+                  <span className="fa fa-heart-o"></span>
+              }
+            </Button>
             <CardBody>
               <CardTitle> {nature.name} </CardTitle>
               <CardText> {nature.description} </CardText>
@@ -46,8 +54,8 @@ function RenderComments({ comments, postComment, natureId }){
       let comment_date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
         .format(new Date(Date.parse(comment.date)));
       return (
-        <Fade in >
-          <li key = {comment.id}>
+        <Fade in key = {comment._id}>
+          <li>
             <p>{comment.comment}</p>
             <p>- - {comment.author}, {comment_date}</p>
           </li>
@@ -175,10 +183,6 @@ function NatureDetailContent({ props }) {
       </div>
     )
   } else {
-    console.log('start');
-    console.log(new Date().toISOString());
-    console.log(props.comments);
-    console.log('end');
     return (
       <div className='container2'>
         <div className='row'>
@@ -188,7 +192,11 @@ function NatureDetailContent({ props }) {
           </div>
         </div>
         <div className='row'>
-          <RenderNature nature={props.nature} />
+          <RenderNature 
+            nature={props.nature}
+            favorite={props.favorite} 
+            postFavorite={props.postFavorite} 
+          />
           <RenderComments 
             comments = {props.comments}
             postComment = {props.postComment}

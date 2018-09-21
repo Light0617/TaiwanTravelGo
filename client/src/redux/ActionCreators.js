@@ -349,5 +349,5 @@ export const fetchFavorites = () => (dispatch) => {
   })
   .then(response => response.json())
   .then(favorites => dispatch(addFavorites(favorites)))
-  .then(error => dispatch(favoritesFailed(error.message)));
+  .catch(error => dispatch(favoritesFailed(error.message)));
 }

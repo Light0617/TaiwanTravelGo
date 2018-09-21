@@ -18,6 +18,10 @@ exports.getToken = function(user) {
         {expiresIn: 3600});
 };
 
+exports.getUser = function(token) {
+    return jwt.verify(token, config.secretKey);
+}
+
 var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretKey;

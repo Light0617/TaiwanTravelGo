@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardFooter, Media } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import { imgBaseUrl } from '../shared/baseUrl';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { FadeTransform } from 'react-animation-components';
 
 function RenderTravellerItem({ traveller }) {
   return (

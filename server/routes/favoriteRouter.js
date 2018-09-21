@@ -3,15 +3,29 @@ const bodyParser = require('body-parser');
 
 const Favorites = require('../models/favorite');
 const authenticate = require('../authenticate');
+var jwt = require('jsonwebtoken');
 const cors = require('./cors');
+
+var util = require('util');
 
 const FavoriteRouter = express.Router();
 FavoriteRouter.use(bodyParser.json());
 
+var getUserId = (req) => {
+  if (req.headers && req.headers.authorization) {
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = authenticate.getUser(token);
+    return decoded._id;
+  } else {
+    return null;
+  }
+}
+
 FavoriteRouter.route('/')
 .options(cors.corsWithOptions, (req, res) => {res.sendStatus(200)})
 .get(cors.cors, (req, res, next) => {
-  Favorites.findOne({user: req.body._id})
+  const userId = getUserId(req);
+  Favorites.findOne({user: userId})
   .populate('user')
   .populate('natures')
   .exec((err, favorite) => {
@@ -22,10 +36,11 @@ FavoriteRouter.route('/')
   });
 })
 .post(cors.corsWithOptions, (req, res, next) => {
-  Favorites.findOne({user : req.user._id}, (err, favorite) => {
+  const userId = getUserId(req);
+  Favorites.findOne({user : userId}, (err, favorite) => {
     if(err) return err;
     if(!favorite){
-      Favorites.create({user: req.user._id})
+      Favorites.create({user: userId})
       .then((favorite) => {
         for(i = 0; i < req.body.length; i++){
           if(favorite.natures.indexOf(req.body[i]._id) < 0){
@@ -62,7 +77,8 @@ FavoriteRouter.route('/')
   res.end('PUT operation not supported on /favorites/');
 })
 .delete(cors.corsWithOptions, (req, res, next) => {
-  Favorites.findOneAndRemove({ user: req.user }, (err, resp) => {
+  const userId = getUserId(req);
+  Favorites.findOneAndRemove({ user: userId }, (err, resp) => {
     if(err) return next(err);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
@@ -74,7 +90,8 @@ FavoriteRouter.route('/')
 FavoriteRouter.route('/:natureId')
   .options(cors.corsWithOptions, authenticate.verifyUser, (req, res) => { res.sendStatus(200); })
   .get(cors.cors, authenticate.verifyUser, (req,res,next) => {
-    Favorites.findOne({ user : req.user._id})
+    const userId = getUserId(req);
+    Favorites.findOne({ user : userId})
     .then((favorites) => {
       if(!favorites){
         res.statusCode = 200;
@@ -95,10 +112,11 @@ FavoriteRouter.route('/:natureId')
     .catch((err) => next(err));
 })
 .post(cors.corsWithOptions, (req, res, next) => {
-  Favorites.findOne({ user : req.user._id}, (err, favorite) => {
+  const userId = getUserId(req);
+  Favorites.findOne({ user : userId}, (err, favorite) => {
     if(err) return next(err);
     if(!favorite) {
-      Favorites.create({ user: req.user._id })
+      Favorites.create({ user: userId })
       .then((favorite) => {
         favorite.natures.push({"_id" : req.params.natureId})
         favorite.save()
@@ -133,7 +151,8 @@ FavoriteRouter.route('/:natureId')
   res.end('PUT operation not supported on /favorites/:natureId');
 })
 .delete(cors.corsWithOptions, (req, res, next) => {
-  Favorites.findOne({ user : req.user._id}, (err , favorite) => {
+  const userId = getUserId(req);
+  Favorites.findOne({ user : req.userId}, (err , favorite) => {
     if(err) return next(err);
     var index = favorite.natures.indexOf(req.params.natureId);
     if(index >= 0){
