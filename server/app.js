@@ -11,6 +11,7 @@ const natureRouter = require('./routes/natureRouter');
 const natureCommentRouter = require('./routes/natureCommentRouter');
 const userRouter = require('./routes/userRouter');
 const favoriteRouter = require('./routes/favoriteRouter');
+const profileRouter = require('./routes/profileRouter')
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use('/natures', natureRouter);
 app.use('/comments', natureCommentRouter);
 app.use('/users', userRouter);
 app.use('/favorites', favoriteRouter);
+app.use('/profile', profileRouter);
 
 app.get('*', (req, res) => {
   res.end('hello world');

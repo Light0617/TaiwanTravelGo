@@ -5,7 +5,6 @@ import { imgBaseUrl, defaultImgUrl } from '../shared/baseUrl';
 import { FadeTransform} from 'react-animation-components';
 
 function RenderUserItem({user}) {
-  console.log(user);
   return (
     <FadeTransform
       in
@@ -34,16 +33,22 @@ function RenderUserItem({user}) {
 }
 
 function ProfileContent({props}) {
-  if (!props.user) {
+  if (props.profileLoading) {
     return (
       <div className="col-12 col-md-5 m-1">
         <Loading />
       </div>
     );
-  } else{
+  } else if(props.profileErrMess !== null) {
     return (
       <div className="col-12 col-md-5 m-1">
-        <RenderUserItem user={props.user} />
+        <h4>{props.profileErrMess}</h4>
+      </div>
+    );
+  } else {
+    return (
+      <div className="col-12 col-md-5 m-1">
+        <RenderUserItem user={props.profile} />
       </div>
     );
   }

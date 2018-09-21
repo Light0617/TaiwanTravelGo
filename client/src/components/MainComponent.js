@@ -12,7 +12,7 @@ import Favorites from './FavoriteComponent';
 import Profile from './ProfileComponent';
 import NatureDetail from './NatureDetailComponent';
 
-import { fetchNatures, fetchComments, postComment, fetchTravellers, 
+import { fetchNatures, fetchComments, postComment, fetchTravellers, fetchProfile, 
   loginUser, logoutUser, fetchFavorites, postFavorite, deleteFavorite } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -22,7 +22,8 @@ const mapStateToProps = state => {
     natures: state.natures,
     comments: state.comments,
     travellers: state.travellers,
-    favorites: state.favorites
+    favorites: state.favorites,
+    profile: state.profile
   }
 }
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = dispatch => ({
   loginUser: (creds) => dispatch(loginUser(creds)),
   logoutUser: () => dispatch(logoutUser()),
 
+  fetchProfile: () => dispatch(fetchProfile()),
   fetchNatures: () => dispatch(fetchNatures()),
   fetchComments: () => dispatch(fetchComments()),
   fetchTravellers: () => dispatch(fetchTravellers()),
@@ -50,6 +52,7 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchTravellers();
     this.props.fetchFavorites();
+    this.props.fetchProfile();
   }
 
   render() {
@@ -88,11 +91,23 @@ class Main extends Component {
     const TravellerPage = () => {
       return (
         <Traveller
-          travellers={this.props.travellers.travellers.filter((person) => person.admin === false)}
+          travellers={this.props.travellers.travellers.filter((person) => 
+            person.admin === false && person._id !== this.props.profile.profile._id
+          )}
           travellersLoading={this.props.travellers.isLoading}
           travellersErrMess={this.props.travellers.errMess}
         />
       )
+    }
+
+    const ProfilePage = () => {
+      return (
+        <Profile
+          profile={this.props.profile.profile}
+          profileLoading={this.props.profile.isLoading}
+          profileErrMess={this.props.profile.errMess}
+        />
+      );
     }
 
     const FavoritePage = () => {
@@ -153,7 +168,7 @@ class Main extends Component {
                 <Route path='/nature/:natureId' component={NatureWithId} />
                 <Route path='/traveller' component={TravellerPage} />
                 <PrivateRoute exact path='/favorite' component={FavoritePage} />
-                <PrivateRoute exact path='/profile' component={() => <Profile user={this.props.auth.user}/>} />
+                <PrivateRoute exact path='/profile' component={ProfilePage} />
                 <Redirect to='/home' />
               </Switch>
             </CSSTransition>

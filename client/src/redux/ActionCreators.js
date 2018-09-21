@@ -2,6 +2,49 @@ import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
 /**
+ * Profile
+ */
+export const profileLoading = () => ({
+  type: ActionTypes.PROFILE_LOADING
+});
+
+export const profileFailed = (errMess) => ({
+  type: ActionTypes.PROFILE_FAILED,
+  payload: errMess
+});
+
+export const addProfile = (profile) => ({
+  type: ActionTypes.ADD_PROFILE,
+  payload: profile
+});
+
+export const fetchProfile = () => (dispatch) => {
+  dispatch(profileLoading(true));
+
+  const bearer = 'Bearer ' + localStorage.getItem('token');
+
+  return fetch(baseUrl + 'profile/', {
+    headers: {
+      'Authorization': bearer
+    },
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  }, error => {
+    var errMess = new Error(error.message);
+    throw errMess;
+  })
+  .then(response => response.json())
+  .then(profile => dispatch(addProfile(profile)));
+}
+
+/**
  * Nature
  */
 export const naturesLoading = () => ({
@@ -212,6 +255,7 @@ export const loginUser = (creds) => (dispatch) => {
       localStorage.setItem('creds', JSON.stringify(creds));
       // Dispatch the success action
       dispatch(fetchFavorites());
+      dispatch(fetchProfile());
       dispatch(receiveLogin(response));
     } else {
       var error = new Error('Error ' + response.status);
@@ -243,6 +287,7 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('token');
   localStorage.removeItem('creds');
   dispatch(favoritesFailed('Error 401: Unauthorized'));
+  dispatch(profileFailed('Error 401: Unauthorized'));
   dispatch(receiveLogout());
 }
 

@@ -8,6 +8,7 @@ import { Natures } from './natures';
 import { Comments } from './comments';
 import { Travellers } from './travellers';
 import { Favorites } from './favorites';
+import { Profile } from './profile';
 
 export const ConfigureStore = () => {
   const store = createStore(
@@ -16,7 +17,8 @@ export const ConfigureStore = () => {
       natures: Natures,
       comments: Comments,
       travellers: Travellers,
-      favorites: Favorites
+      favorites: Favorites,
+      profile: Profile
     }),
     applyMiddleware(thunk, logger)
   );
