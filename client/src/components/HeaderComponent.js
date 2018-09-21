@@ -61,12 +61,22 @@ class Header extends Component {
               <NavItem>
                 <NavLink className="nav-link" to='/traveller'><span className="fa fa-user-secret fa-lg"></span> Traveller</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink className="nav-link" to='/favorite'><span className="fa fa-heart fa-lg"></span> Favorite</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="nav-link" to='/profile'><span className="fa fa-user fa-lg"></span> Profile</NavLink>
-              </NavItem>
+              { this.props.auth.isAuthenticated 
+                ?
+                <NavItem>
+                  <NavLink className="nav-link" to='/favorite'><span className="fa fa-heart fa-lg"></span> Favorite</NavLink>
+                </NavItem>
+                :
+                <NavItem></NavItem>
+              }
+              { this.props.auth.isAuthenticated 
+                ?
+                <NavItem>
+                  <NavLink className="nav-link" to='/profile'><span className="fa fa-user fa-lg"></span> Profile</NavLink>
+                </NavItem>
+                :
+                <NavItem></NavItem>
+              }
             </Nav>
             <Nav className="ml-auto" navbar>
               <NavItem>

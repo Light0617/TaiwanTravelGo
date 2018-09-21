@@ -5,6 +5,7 @@ import { imgBaseUrl, defaultImgUrl } from '../shared/baseUrl';
 import { FadeTransform} from 'react-animation-components';
 
 function RenderUserItem({user}) {
+  console.log(user);
   return (
     <FadeTransform
       in

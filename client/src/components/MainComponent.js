@@ -104,6 +104,8 @@ class Main extends Component {
 
     const NatureWithId = ({match}) => {
       return (
+        this.props.auth.isAuthenticated
+        ? 
         <NatureDetail
           nature={this.props.natures.natures.filter((nature) => nature._id === match.params.natureId)[0]}
           isLoading={this.props.natures.isLoading}
@@ -112,7 +114,25 @@ class Main extends Component {
           comments={this.props.comments.comments.filter((comment)=>comment.natureId === match.params.natureId)}
           commentsErrMess={this.props.comments.errMess}
           postComment={this.props.postComment}
+
+          favorite={this.props.favorites.favorites.natures.some((nature) => nature._id === match.params.natureId)}
+          postFavorite={this.props.postFavorite}
         />
+        :
+        <NatureDetail
+          nature={this.props.natures.natures.filter((nature) => nature._id === match.params.natureId)[0]}
+          isLoading={this.props.natures.isLoading}
+          errMess={this.props.natures.errMess}
+
+          comments={this.props.comments.comments.filter((comment)=>comment.natureId === match.params.natureId)}
+          commentsErrMess={this.props.comments.errMess}
+          postComment={this.props.postComment}
+
+          favorite={false}
+          postFavorite={this.props.postFavorite}
+        />
+
+
       )
     }
 
