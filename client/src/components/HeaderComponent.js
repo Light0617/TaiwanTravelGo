@@ -12,17 +12,25 @@ class Header extends Component {
     super(props);
     this.state = {
       isNavOpen: false,
-      isModalOpen: false
+      isLoginModalOpen: false,
+      isSignupModalOpen: false
     };
     this.toggleNav = this.toggleNav.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.loginToggleModal = this.loginToggleModal.bind(this);
+    this.signupToggleModal = this.signupToggleModal.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  toggleModal() {
+  loginToggleModal() {
     this.setState({
-      isModalOpen: !this.state.isModalOpen
+      isLoginModalOpen: !this.state.isLoginModalOpen
+    });
+  }
+
+  signupToggleModal() {
+    this.setState({
+      isSignupModalOpen: !this.state.isSignupModalOpen
     });
   }
 
@@ -33,14 +41,21 @@ class Header extends Component {
   }
 
   handleLogin(event) {
-    this.toggleModal();
-    this.props.loginUser({username: this.username.value, password: this.password.value});
+    this.loginToggleModal();
+    this.props.loginUser({ username: this.username.value, password: this.password.value });
     event.preventDefault();
   }
 
+  handleSignup(event) {
+    this.signupToggleModal();
+    this.props.signupUser({ username: this.username.value, password: this.password.value });
+    event.preventDefault();
+  }
+
+
   handleLogout() {
     this.props.logoutUser();
-}
+  }
 
   render() {
     return (
@@ -61,7 +76,7 @@ class Header extends Component {
               <NavItem>
                 <NavLink className="nav-link" to='/traveller'><span className="fa fa-user-secret fa-lg"></span> Traveller</NavLink>
               </NavItem>
-              { this.props.auth.isAuthenticated 
+              {this.props.auth.isAuthenticated
                 ?
                 <NavItem>
                   <NavLink className="nav-link" to='/favorite'><span className="fa fa-heart fa-lg"></span> Favorite</NavLink>
@@ -69,7 +84,7 @@ class Header extends Component {
                 :
                 <NavItem></NavItem>
               }
-              { this.props.auth.isAuthenticated 
+              {this.props.auth.isAuthenticated
                 ?
                 <NavItem>
                   <NavLink className="nav-link" to='/profile'><span className="fa fa-user fa-lg"></span> Profile</NavLink>
@@ -78,31 +93,39 @@ class Header extends Component {
                 <NavItem></NavItem>
               }
             </Nav>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                { !this.props.auth.isAuthenticated 
-                  ? 
-                  <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg loginButton"></span> 
+            {!this.props.auth.isAuthenticated
+              ?
+              <Nav className="ml-auto" navbar-right>
+                <NavItem>
+                  <Button outline onClick={this.signupToggleModal}><span className="fa fa-sign-in fa-lg loginButton"></span>
+                    <span className="loginButton"> Sign up </span>
+                  </Button>
+                </NavItem>
+                <NavItem>
+                  <Button outline onClick={this.loginToggleModal}><span className="fa fa-sign-in fa-lg loginButton"></span>
                     <span className="loginButton"> Login </span>
-                    { this.props.auth.isFetching
+                    {this.props.auth.isFetching
                       ? <span className="fa fa-spinner fa-pulse fa-fw"></span>
                       : null
                     }
                   </Button>
-                  : 
-                  <div>
-                      <Button outline onClick={this.handleLogout}>
-                        <span className="fa fa-sign-out fa-lg"></span> {this.props.auth.user.username}, Logout
-                        { this.props.auth.isFetching
-                          ? <span className="fa fa-spinner fa-pulse fa-fw"></span>
-                          : null
-                        }
-                      </Button>
-                  </div>
-                }
-              
-              </NavItem>
-            </Nav>
+                </NavItem>
+              </Nav>
+              :
+              <Nav className="ml-auto" navbar-right>
+                <NavItem>
+                  <span>{this.props.auth.user.username},  </span>
+                  <Button outline onClick={this.handleLogout}>
+                    <span className="fa fa-sign-out fa-lg"></span> Logout
+                        {this.props.auth.isFetching
+                      ? <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                      : null
+                    }
+                  </Button>
+                </NavItem>
+              </Nav>
+
+            }
           </Collapse>
         </Navbar>
         <Jumbotron className="header">
@@ -114,8 +137,8 @@ class Header extends Component {
           </div>
         </Jumbotron>
         
-        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-          <ModalHeader className="login" toggle={this.toggleModal}>Login</ModalHeader>
+        <Modal isOpen={this.state.isLoginModalOpen} toggle={this.loginToggleModal}>
+          <ModalHeader className="login" toggle={this.loginToggleModal}>Login</ModalHeader>
           <ModalBody className="login">
             <Form onSubmit={this.handleLogin}>
               <FormGroup>
@@ -136,6 +159,32 @@ class Header extends Component {
                 </Label>
               </FormGroup>
               <Button type="submit" value="submit" color="primary">Login</Button>
+            </Form>
+          </ModalBody>
+        </Modal>
+      
+        <Modal isOpen={this.state.isSignupModalOpen} toggle={this.signupToggleModal}>
+          <ModalHeader className="login" toggle={this.signupToggleModal}>Login</ModalHeader>
+          <ModalBody className="login">
+            <Form onSubmit={this.handleSignup}>
+              <FormGroup>
+                <Label htmlFor="username">Username</Label>
+                <Input type="text" id="username" name="username"
+                  innerRef={(input) => this.username = input} />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="password">Password</Label>
+                <Input type="password" id="password" name="password"
+                  innerRef={(input) => this.password = input} />
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="checkbox" name="remember"
+                    innerRef={(input) => this.remember = input} />
+                  Remember me
+                </Label>
+              </FormGroup>
+              <Button type="submit" value="submit" color="primary">Sign up</Button>
             </Form>
           </ModalBody>
         </Modal>

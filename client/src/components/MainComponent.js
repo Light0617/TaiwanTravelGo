@@ -13,7 +13,8 @@ import Profile from './ProfileComponent';
 import NatureDetail from './NatureDetailComponent';
 
 import { fetchNatures, fetchComments, postComment, fetchTravellers, fetchProfile, 
-  loginUser, logoutUser, fetchFavorites, postFavorite, deleteFavorite } from '../redux/ActionCreators';
+  loginUser, logoutUser, signupUser,
+  fetchFavorites, postFavorite, deleteFavorite } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
@@ -28,6 +29,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
+  signupUser: (creds) => dispatch(signupUser(creds)),
   loginUser: (creds) => dispatch(loginUser(creds)),
   logoutUser: () => dispatch(logoutUser()),
 
@@ -159,6 +161,7 @@ class Main extends Component {
           auth = {this.props.auth}
           loginUser={this.props.loginUser}
           logoutUser={this.props.logoutUser}
+          signupUser={this.props.signupUser}
         />
         <div>
           <TransitionGroup>

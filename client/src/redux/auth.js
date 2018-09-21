@@ -8,6 +8,13 @@ export const Auth = (state = {
     errMess: null
   }, action) => {
   switch(action.type) {
+    case ActionTypes.SIGNUP_REQUEST:
+      return {...state, isLoading: true, isAuthenticated: true}
+    case ActionTypes.SIGNUP_SUCCESS:
+      return {...state, isLoading: false, isAuthenticated: false, token: '', user: null}
+    case ActionTypes.SIGNUP_FAILURE:
+      return {...state, isLoading: false, isAuthenticated: false, errMess: action.payload} 
+
     case ActionTypes.LOGIN_REQUEST:
       return {...state, isLoading: true, isAuthenticated: false, errMess: null, user: action.payload}
     case ActionTypes.LOGIN_SUCCESS:
