@@ -41,7 +41,10 @@ export const fetchProfile = () => (dispatch) => {
     throw errMess;
   })
   .then(response => response.json())
-  .then(profile => dispatch(addProfile(profile)));
+  .then(profile => dispatch(addProfile(profile)))
+  .catch(error => {
+    console.log('fetch profile', error.message);
+  });
 }
 
 /**
@@ -78,7 +81,10 @@ export const fetchNatures = () => (dispatch) => {
       throw errMess;
     })
     .then(response => response.json())
-    .then(natures => dispatch(addNatures(natures)));
+    .then(natures => dispatch(addNatures(natures)))
+    .catch(error => {
+      console.log('fetch natures', error.message);
+    });
 }
 
 /**
@@ -113,7 +119,10 @@ export const fetchComments = () => (dispatch) => {
       throw errMess;
     })
     .then(response => response.json())
-    .then(comments => dispatch(addComments(comments)));
+    .then(comments => dispatch(addComments(comments)))
+    .catch(error => {
+      console.log('fetch comments', error.message);
+    });
 }
 
 /**
@@ -197,7 +206,10 @@ export const fetchTravellers = () => (dispatch) => {
       throw errMess;
     })
     .then(response => response.json())
-    .then(travellers => dispatch(addTravellers(travellers)));
+    .then(travellers => dispatch(addTravellers(travellers)))
+    .catch(error => {
+      console.log('fetch travellers', error.message);
+    });
 }
 
 

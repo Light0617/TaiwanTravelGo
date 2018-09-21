@@ -152,11 +152,13 @@ FavoriteRouter.route('/:natureId')
 })
 .delete(cors.corsWithOptions, (req, res, next) => {
   const userId = getUserId(req);
-  Favorites.findOne({ user : req.userId}, (err , favorite) => {
+  Favorites.findOne({ user : userId}, (err , favorite) => {
     if(err) return next(err);
     var index = favorite.natures.indexOf(req.params.natureId);
     if(index >= 0){
+      console.log('before favorite = ' + JSON.stringify(favorite.natures));
       favorite.natures.splice(index, 1);
+      console.log('after favorite = ' + JSON.stringify(favorite.natures));
       favorite.save()
       .then((favorite) => {
         console.log("Favorite Nature Deleted!");

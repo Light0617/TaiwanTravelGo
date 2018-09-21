@@ -111,10 +111,12 @@ class Main extends Component {
     }
 
     const FavoritePage = () => {
-      <Favorites
-        favorites={this.props.favorites}
-        deleteFavorite={this.props.deleteFavorite}
-      />
+      return (
+        <Favorites 
+          favorites={this.props.favorites}
+          deleteFavorite={this.props.deleteFavorite}
+        />
+      );
     }
 
     const NatureWithId = ({match}) => {
