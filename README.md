@@ -14,5 +14,6 @@ if you do not have yarn
 - `sudo npm install -g yarn` 
 - `yarn install`
 - `serve -s build`
+- `yarn global add serve`
 ### launch client on port 5000
 - `serve -s build`
