@@ -164,7 +164,11 @@ export const postComment = (natureId, rating, author, comment) => (dispatch) => 
     throw errmess;
   })
   .then(response => response.json())
-  .then(response => dispatch(addComment(response)))
+  .then(response => {
+    console.log('Comment Added');
+    dispatch(fetchComments());
+    dispatch(addComment(response));
+  })
   .catch(error => {
     console.log('post comments', error.message);
   });
