@@ -134,7 +134,12 @@ class Main extends Component {
           commentsErrMess={this.props.comments.errMess}
           postComment={this.props.postComment}
 
-          favorite={this.props.favorites.favorites.natures.some((nature) => nature._id === match.params.natureId)}
+          favorite={
+            !this.props.favorites.favorites ? 
+              []
+              :
+              this.props.favorites.favorites.natures.some((nature) => nature._id === match.params.natureId)
+          }
           postFavorite={this.props.postFavorite}
         />
         :

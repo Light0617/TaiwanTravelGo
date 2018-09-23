@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media, Button } from 'reactstrap';
+import { Media, Button, Card, CardImg, CardFooter } from 'reactstrap';
 
 import { FadeTransform } from 'react-animation-components';
 
@@ -8,18 +8,15 @@ import { imgBaseUrl } from '../shared/baseUrl';
 
 function RenderMenuItem({ nature, deleteFavorite }) {
   return (
-    <Media tag="li">
-      <Media left middle>
-        <Media object src={imgBaseUrl + nature.image} alt={nature.name} />
-      </Media>
-      <Media body className="ml-5">
-        <Media heading>{nature.name}</Media>
-        <p>{nature.description}</p>
+    <Card>
+      <CardImg object width="100%" height="600px" src={imgBaseUrl + nature.image} alt={nature.name} />
+      <CardFooter>
         <Button outline color="danger" onClick={() => deleteFavorite(nature._id)}>
           <span className="fa fa-times"></span>
         </Button>
-      </Media>
-    </Media>
+        <h3> {nature.name} </h3>
+      </CardFooter>
+    </Card>
   );
 }
 
@@ -43,7 +40,7 @@ function FavoriteContent({ props }) {
   } else if (props.favorites.favorites) {
     const favorites = props.favorites.favorites.natures.map((nature) => {
       return (
-        <div key={nature._id} className="col-12 mt-5">
+        <div key={nature._id} className="col-12 col-md-5 m-1">
         <FadeTransform
           in
           transformProps={{

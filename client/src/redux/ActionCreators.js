@@ -417,6 +417,7 @@ export const postFavorite = (natureId) => (dispatch) => {
   .then(response => response.json())
   .then(favorites => {
     console.log('Favorite Added', favorites);
+    dispatch(fetchFavorites());
     dispatch(addFavorites(favorites));
   })
   .catch(error => dispatch(favoritesFailed(error.message)));
