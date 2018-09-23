@@ -140,6 +140,7 @@ export const postComment = (natureId, rating, author, comment) => (dispatch) => 
     author: author,
     comment: comment
   };
+  console.log('new comment= ' + JSON.stringify(newComment));
   newComment.date=new Date().toISOString();
 
   return fetch(baseUrl + 'comments', {

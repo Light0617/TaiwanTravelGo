@@ -47,7 +47,7 @@ function RenderNature({ nature, favorite, postFavorite }) {
   }
 }
 
-function RenderComments({ comments, postComment, natureId }){
+function RenderComments({ comments, postComment, natureId, authorName }){
   if(comments != null) {
     const CommentsSummary = comments.map((comment) => {
       let comment_date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
@@ -61,7 +61,6 @@ function RenderComments({ comments, postComment, natureId }){
         </Fade>
       );
     });
-
     return (
       <div className='col-12 col-md-5 m-1'>
         <h4>Comments</h4>
@@ -70,7 +69,7 @@ function RenderComments({ comments, postComment, natureId }){
             {CommentsSummary}
           </Stagger>
         </ul>
-        <CommentForm natureId={natureId} postComment={postComment} />
+        <CommentForm natureId={natureId} postComment={postComment} authorName={authorName}/>
       </div>
     );
   } else {
@@ -96,7 +95,8 @@ class CommentForm extends Component {
 
   handleSubmit(values) {
     this.toggleModal();
-    this.props.postComment(this.props.natureId, values.rating, values.author, values.comment);
+    console.log('authorName=' + this.props.authorName);
+    this.props.postComment(this.props.natureId, values.rating, this.props.authorName, values.comment);
   }
 
   render(){
@@ -121,27 +121,6 @@ class CommentForm extends Component {
                     <option>4</option>
                     <option>5</option>
                   </Control.select>
-                </Col>
-              </Row>
-              <Row className='form-group'>
-                <Label htmlFor='rating' md={2}>Your Name</Label>
-                <Col md={10}>
-                  <Control.text model='.author' id='author' name='author'
-                    placeholder='name'
-                    className='form-control'
-                    validators={{
-                      minLength: minLength(3), maxLength: maxLength(15)
-                    }}
-                  />
-                  <Errors
-                    className='text-danger'
-                    model='.author'
-                    show='touched'
-                    messages={{
-                      minLength: 'Must be greater than 2 characters',
-                      maxLength: 'Must be 15 characters or less'
-                    }}
-                  />
                 </Col>
               </Row>
               <Row className='form-group'>
@@ -190,6 +169,7 @@ function NatureDetailContent({ props }) {
             comments = {props.comments}
             postComment = {props.postComment}
             natureId = {props.nature._id}
+            authorName = {props.authorName}
           />
         </div>
       </div>

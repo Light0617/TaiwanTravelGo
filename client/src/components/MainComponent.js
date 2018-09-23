@@ -146,6 +146,12 @@ class Main extends Component {
               this.props.favorites.favorites.natures.some((nature) => nature._id === match.params.natureId)
           }
           postFavorite={this.props.postFavorite}
+          authorName={
+            !this.props.profile.profile ? 
+              null
+              :
+              this.props.profile.profile.username
+          }
         />
         :
         <NatureDetail
@@ -159,6 +165,7 @@ class Main extends Component {
 
           favorite={false}
           postFavorite={this.props.postFavorite}
+          authorName='guest'
         />
 
 
