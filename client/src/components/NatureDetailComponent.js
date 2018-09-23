@@ -9,7 +9,6 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 import { Loading } from './LoadingComponent';
-import { imgBaseUrl } from '../shared/baseUrl';
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -24,7 +23,7 @@ function RenderNature({ nature, favorite, postFavorite }) {
             exitTransform: 'scale(0.5) translateY(-50%)'
           }}>
           <Card>
-            <CardImg top src={imgBaseUrl + nature.image} alt={nature.name} />
+            <CardImg top src={nature.image} alt={nature.name} />
             <Button outline color='primary' 
                     onClick={() => favorite ? console.log('Already favorite') : postFavorite(nature._id)}>
               { favorite ? 

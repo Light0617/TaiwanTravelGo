@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardFooter, Media } from 'reactstrap';
 import { Loading } from './LoadingComponent';
-import { imgBaseUrl } from '../shared/baseUrl';
 import { FadeTransform } from 'react-animation-components';
 
 function RenderTravellerItem({ traveller }) {
@@ -14,7 +13,7 @@ function RenderTravellerItem({ traveller }) {
       <Card>
         <Media className="mt-3">
           <Media left>
-            <img className="mr-3" src={imgBaseUrl + traveller.image} alt={traveller.username} width="400px" height="500px" />
+            <img className="mr-3" src={traveller.image} alt={traveller.username} width="400px" height="500px" />
           </Media>
           <Media body>
             <Media heading>
@@ -28,7 +27,6 @@ function RenderTravellerItem({ traveller }) {
             </Media>
           </Media>
         </Media>
-        {/* <CardImg width="100%" height="600px" src={imgBaseUrl + traveller.image} alt={traveller.username} /> */}
         <CardFooter>
           <h3> {traveller.username} </h3>
         </CardFooter>

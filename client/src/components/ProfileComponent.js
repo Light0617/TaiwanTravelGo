@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardFooter, Media } from 'reactstrap';
 import { Loading } from './LoadingComponent';
-import { imgBaseUrl, defaultImgUrl } from '../shared/baseUrl';
+import { defaultImgUrl } from '../shared/baseUrl';
 import { FadeTransform} from 'react-animation-components';
 
 function RenderUserItem({user}) {
@@ -14,7 +14,7 @@ function RenderUserItem({user}) {
       <Card>
         <Media className="mt-3">
           <Media left>
-            <img className="mr-3" src={imgBaseUrl + defaultImgUrl} alt={user.username} width="400px" height="500px" />
+            <img className="mr-3" src={defaultImgUrl} alt={user.username} width="400px" height="500px" />
           </Media>
           <Media body>
             <Media heading>

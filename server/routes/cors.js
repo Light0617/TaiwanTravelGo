@@ -4,7 +4,8 @@ const cors = require('cors');
 const app = express();
 
 //server going to accept
-const whitelist = ['http://localhost:3000', 'https://localhost:3001'];
+const ip = 'http://localhost'
+const whitelist = [ip + ':3000', ip + ':3001', ip + ':5000'];
 
 
 var corsOptionsDelegate = (req, callback) => {
