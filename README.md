@@ -1,6 +1,18 @@
 ## How to run
-### launch server on port 3001
+### server side
+`cd server`
+#### install
+`npm install`
+#### launch server on port 3001
 `node server/app.js`
-### launch client on port 5000
+
+
+### client side
 `cd client`
-`serve -s build`
+#### install and build
+if you do not have yarn
+- `sudo npm install -g yarn` 
+- `yarn install`
+- `serve -s build`
+### launch client on port 5000
+- `serve -s build`
