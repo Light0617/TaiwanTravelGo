@@ -5,13 +5,10 @@ import {
   ModalHeader, ModalBody,
   Row, Col, Label
 } from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, LocalForm } from 'react-redux-form';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 import { Loading } from './LoadingComponent';
-
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
-const minLength = (len) => (val) => val && (val.length >= len);
 
 function RenderNature({ nature, favorite, postFavorite }) {
   if (nature != null) {
@@ -48,28 +45,48 @@ function RenderNature({ nature, favorite, postFavorite }) {
 }
 
 function RenderComments({ comments, postComment, natureId, authorName }){
+
   if(comments != null) {
     const CommentsSummary = comments.map((comment) => {
       let comment_date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
         .format(new Date(Date.parse(comment.date)));
+
+      var elements = [];
+      for(let i =0; i < comment.rating; i++){
+        elements.push(<i className="fa fa-star fa-lg yellow100"></i>);
+      }
+      for(let i =0; i < 5 - comment.rating; i++){
+        elements.push(<i className="fa fa-star-o fa-lg yellow100"></i>);
+      }
+        
+
       return (
         <Fade in key = {comment._id}>
-          <li>
+        <Card>
+            <h5> Description </h5>
             <p>{comment.comment}</p>
-            <p>- - {comment.author}, {comment_date}</p>
-          </li>
+            <h6>Rating:</h6>
+            <span>
+              {elements}
+            </span>
+            <p>- - {comment.author}, {comment_date}</p> 
+        </Card>
         </Fade>
       );
     });
     return (
       <div className='col-12 col-md-5 m-1'>
-        <h4>Comments</h4>
-        <ul className='list-unstyled'>
-          <Stagger in>
-            {CommentsSummary}
-          </Stagger>
-        </ul>
-        <CommentForm natureId={natureId} postComment={postComment} authorName={authorName}/>
+        <Card>
+          <CardTitle>
+            <h3>Comments</h3>
+          </CardTitle>
+          <CardBody>
+            <Stagger in>
+              {CommentsSummary}
+            </Stagger>
+            <CommentForm natureId={natureId} postComment={postComment} authorName={authorName}/>
+          </CardBody>
+        </Card>
       </div>
     );
   } else {
