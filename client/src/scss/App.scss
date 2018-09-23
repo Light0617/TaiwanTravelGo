@@ -95,6 +95,15 @@ address{
   color: white;
 }
 
+.headerBar {
+  color: white;
+}
+
+h4 {
+  color: white;
+  display: inline;
+}
+
 .container2 {
   @include zero-margin(30px,30px);
   width: 98%;

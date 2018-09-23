@@ -52,9 +52,9 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchNatures();
     this.props.fetchComments();
-    this.props.fetchTravellers();
     this.props.fetchFavorites();
     this.props.fetchProfile();
+    this.props.fetchTravellers();
   }
 
   render() {
@@ -94,7 +94,12 @@ class Main extends Component {
       return (
         <Traveller
           travellers={this.props.travellers.travellers.filter((person) => 
-            person.admin === false && person._id !== this.props.profile.profile._id
+            person.admin === false && 
+            (this.props.profile.profile ?
+              person._id !== this.props.profile.profile._id
+              :
+              true
+            )
           )}
           travellersLoading={this.props.travellers.isLoading}
           travellersErrMess={this.props.travellers.errMess}
@@ -136,7 +141,7 @@ class Main extends Component {
 
           favorite={
             !this.props.favorites.favorites ? 
-              []
+              false
               :
               this.props.favorites.favorites.natures.some((nature) => nature._id === match.params.natureId)
           }

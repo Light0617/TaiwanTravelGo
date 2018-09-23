@@ -447,6 +447,7 @@ export const deleteFavorite = (natureId) => (dispatch) => {
   .then(response => response.json())
   .then(favorites => {
     console.log('Favorite Deleted', favorites);
+    dispatch(fetchFavorites());
     dispatch(addFavorites(favorites));
   })
   .catch(error => dispatch(favoritesFailed(error.message)));

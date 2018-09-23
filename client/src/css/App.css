@@ -63,6 +63,13 @@ address {
 .loginButton {
   color: white; }
 
+.headerBar {
+  color: white; }
+
+h4 {
+  color: white;
+  display: inline; }
+
 .container2 {
   margin: 0px auto;
   padding: 30px 30px;

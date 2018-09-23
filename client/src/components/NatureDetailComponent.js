@@ -166,21 +166,11 @@ class CommentForm extends Component {
 function NatureDetailContent({ props }) {
   if (props.isLoading) {
     return (
-      <div className='container2'>
-        <div className='row'>
-          <Loading />
-        </div>
-      </div>
+      <Loading />
     );
   } else if (props.errMess != null) {
     return (
-      <div className='container2'>
-        <div className='row'>
-          <div className='col-12'>
-            <h4>{props.errMess}</h4>
-          </div>
-        </div>
-      </div>
+      <h4>{props.errMess}</h4>
     )
   } else {
     return (

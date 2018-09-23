@@ -18,10 +18,20 @@ function RenderUserItem({user}) {
           </Media>
           <Media body>
             <Media heading>
-              user: {user.username}
+              Username: {user.username} <p/>
             </Media>
-            <p>the count of reviews: {user.numberOfComments}</p>
-            <p>the count of favorite: {user.numberOfFavorite}</p>
+            <Media heading>
+              First Name: {user.firstname} <p/>
+            </Media>
+            <Media heading>
+              Last Name: {user.lastname} <p/>
+            </Media>
+            <Media heading>
+              The count of reviews: {user.numberOfComments} <p/>
+            </Media>
+            <Media heading>
+              The count of favorite: {user.numberOfFavorite} <p/>
+            </Media>
           </Media>
         </Media>
         <CardFooter>
@@ -35,15 +45,11 @@ function RenderUserItem({user}) {
 function ProfileContent({props}) {
   if (props.profileLoading) {
     return (
-      <div className="col-12 col-md-5 m-1">
-        <Loading />
-      </div>
+      <Loading />
     );
   } else if(props.profileErrMess !== null) {
     return (
-      <div className="col-12 col-md-5 m-1">
-        <h4>{props.profileErrMess}</h4>
-      </div>
+      <h4>{props.profileErrMess}</h4>
     );
   } else {
     return (

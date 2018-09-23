@@ -21,21 +21,11 @@ function Nature(props) {
   const natureContent = (props) => {
     if (props.naturesLoading) {
       return (
-        <div className="container2">
-          <div className="row">
-            <Loading />
-          </div>
-        </div>
+        <Loading />
       );
     } else if (props.naturesErrMess !== null) {
       return (
-        <div className="container2">
-          <div className="row">
-            <div className="col-12">
-              <h4>{props.naturesErrMess}</h4>
-            </div>
-          </div>
-        </div>
+        <h4>{props.naturesErrMess}</h4>
       );
     } else {
       const natureList = props.natures.map((nature) => {

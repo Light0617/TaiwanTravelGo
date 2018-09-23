@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media, Button, Card, CardImg, CardFooter } from 'reactstrap';
+import { Button, Card, CardImg, CardFooter } from 'reactstrap';
 
 import { FadeTransform } from 'react-animation-components';
 
@@ -9,7 +9,7 @@ import { imgBaseUrl } from '../shared/baseUrl';
 function RenderMenuItem({ nature, deleteFavorite }) {
   return (
     <Card>
-      <CardImg object width="100%" height="600px" src={imgBaseUrl + nature.image} alt={nature.name} />
+      <CardImg width="100%" height="600px" src={imgBaseUrl + nature.image} alt={nature.name} />
       <CardFooter>
         <Button outline color="danger" onClick={() => deleteFavorite(nature._id)}>
           <span className="fa fa-times"></span>
@@ -20,28 +20,25 @@ function RenderMenuItem({ nature, deleteFavorite }) {
   );
 }
 
-function FavoriteContent({ props }) {
-  if (props.favorites.isLoading) {
-    return (
-      <div className="container2">
-        <div className="row">
-          <Loading />
-        </div>
-      </div>
-    );
-  } else if (props.favorites.errMess != null) {
-    return (
-      <div className="container2">
-        <div className="row">
-          <h4>{props.favorites.errMess}</h4>
-        </div>
-      </div>
-    );
-  } else if (props.favorites.favorites) {
-    const favorites = props.favorites.favorites.natures.map((nature) => {
+function Favorite(props) {
+  const favoriteContent = (props) => {
+    if (props.favorites.isLoading) {
       return (
-        <div key={nature._id} className="col-12 col-md-5 m-1">
-        <FadeTransform
+        <Loading />
+      );
+    } else if (props.favorites.errMess) {
+      return (
+        <h4>{props.favorites.errMess}</h4>
+      );
+    } else if (props.favorites.favorites === null || props.favorites.favorites.natures.length === 0){
+      return (
+        <h4>You do not have favorites</h4>
+      );
+    } else {
+      const favoriteList = props.favorites.favorites.natures.map((nature) => {
+        return (
+          <div className="col-12 col-md-5 m-1" key={nature._id}>
+            <FadeTransform
           in
           transformProps={{
             exitTransform: 'scale(0.5) translateY(-50%)'
@@ -49,32 +46,14 @@ function FavoriteContent({ props }) {
             <RenderMenuItem
               nature={nature} deleteFavorite={props.deleteFavorite}
             />
-        </FadeTransform>
-        </div>
-      )
-    })
-
-    return (
-      <div className="container2">
-        <div className="row">
-          <Media list>
-            {favorites}
-          </Media>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container2">
-        <div className="row">
-          <h4>You do not have favorites</h4>
-        </div>
-      </div>
-    );
+            </FadeTransform>
+          </div>
+        );
+      });
+      return favoriteList;
+    }
   }
-}
 
-function Favorite(props) {
   return (
     <div className="container2">
       <div className="row">
@@ -84,7 +63,7 @@ function Favorite(props) {
         </div>
       </div>
       <div className="row">
-        <FavoriteContent props={props} />
+        {favoriteContent(props)}
       </div>
     </div>
   );

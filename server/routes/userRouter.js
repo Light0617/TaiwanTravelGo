@@ -22,6 +22,7 @@ router.post('/signup', cors.cors, (req, res, next) => {
       res.json({err: err});
     }
     else {
+      console.log('req.body = ' + JSON.stringify(req.body));
       if (req.body.firstname)
         user.firstname = req.body.firstname;
       if (req.body.lastname)

@@ -18,10 +18,14 @@ function RenderTravellerItem({ traveller }) {
           </Media>
           <Media body>
             <Media heading>
-              user: {traveller.username}
+              user: {traveller.username} <p/>
             </Media>
-            <p>the count of reviews: {traveller.numberOfComments}</p>
-            <p>the count of favorite: {traveller.numberOfFavorite}</p>
+            <Media heading>
+              The count of reviews: {traveller.numberOfComments} <p/>
+            </Media>
+            <Media heading>
+              The count of favorite: {traveller.numberOfFavorite} <p/>
+            </Media>
           </Media>
         </Media>
         {/* <CardImg width="100%" height="600px" src={imgBaseUrl + traveller.image} alt={traveller.username} /> */}
@@ -37,21 +41,11 @@ function RenderTravellerItem({ traveller }) {
 function TravellerContent({ props }) {
   if (props.travellersLoading) {
     return (
-      <div className="container2">
-        <div className="row">
-          <Loading />
-        </div>
-      </div>
+      <Loading />
     );
   } else if (props.travellersErrMess !== null) {
     return (
-      <div className="container2">
-        <div className="row">
-          <div className="col-12">
-            <h4>{props.naturesErrMess}</h4>
-          </div>
-        </div>
-      </div>
+      <h4>{props.naturesErrMess}</h4>
     );
   } else {
     //travellers

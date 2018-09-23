@@ -50,11 +50,11 @@ class Header extends Component {
 
   handleSignup(event) {
     this.signupToggleModal();
-    console.log('user= ' + this.username.value);
-    console.log('password= ' + this.password.value);
     this.props.signupUser({
       username: this.username.value,
-      password: this.password.value
+      password: this.password.value,
+      firstname: this.firstname.value,
+      lastname: this.lastname.value
     });
     event.preventDefault();
   }
@@ -67,7 +67,7 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar dark expand="md">
+        <Navbar dark expand="md" className='headerBar'>
           <NavbarToggler onClick={this.toggleNav} />
           <Collapse isOpen={this.state.isNavOpen} navbar>
             <Nav navbar>
@@ -121,7 +121,7 @@ class Header extends Component {
               :
               <Nav className="ml-auto">
                 <NavItem>
-                  <span>{this.props.auth.user.username},  </span>
+                  <h4>{this.props.auth.user.username}, &emsp;</h4>
                   <Button outline onClick={this.handleLogout}>
                     <span className="fa fa-sign-out fa-lg"></span> Logout
                         {this.props.auth.isFetching
@@ -183,6 +183,16 @@ class Header extends Component {
                 <Label htmlFor="password">Password</Label>
                 <Input type="password" id="password" name="password"
                   innerRef={(input) => this.password = input} />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="firstname">First Name</Label>
+                <Input type="text" id="firstname" name="firstname"
+                  innerRef={(input) => this.firstname = input} />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="lastname">Last Name</Label>
+                <Input type="text" id="lastname" name="lastname"
+                  innerRef={(input) => this.lastname = input} />
               </FormGroup>
               <FormGroup check>
                 <Label check>
