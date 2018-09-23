@@ -226,7 +226,7 @@ export const requestSignup = (creds) => {
 export const receiveSignup = (response) => {
   return {
     type: ActionTypes.SIGNUP_SUCCESS,
-    payload: response.token
+    paylaod: response.token
   }
 }
 
@@ -262,7 +262,15 @@ export const signupUser = (creds) => (dispatch) => {
   .then(response => {
     if(response.success){
       console.log('Sign Up Succeed!');
-      dispatch(loginUser(creds));
+      const userInfo = {username: creds.username, password: creds.password};
+      console.log('creds= ' + JSON.stringify(creds));
+      console.log('userInfo= ' + JSON.stringify(userInfo));
+      console.log('response= ' + JSON.stringify(response));
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('creds', JSON.stringify(userInfo));
+      dispatch(receiveSignup(response));
+      dispatch(fetchFavorites());
+      dispatch(fetchProfile());
     } else {
       var error = new Error('Error ' + response.status);
       error.response = response;

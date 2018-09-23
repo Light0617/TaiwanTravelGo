@@ -54,6 +54,12 @@ address {
 .login {
   background-color: #a4dcea; }
 
+.signup {
+  background-color: #a4dcea; }
+
+.signupButton {
+  color: white; }
+
 .loginButton {
   color: white; }
 

@@ -18,6 +18,8 @@ class Header extends Component {
     this.toggleNav = this.toggleNav.bind(this);
     this.loginToggleModal = this.loginToggleModal.bind(this);
     this.signupToggleModal = this.signupToggleModal.bind(this);
+
+    this.handleSignup = this.handleSignup.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -48,7 +50,12 @@ class Header extends Component {
 
   handleSignup(event) {
     this.signupToggleModal();
-    this.props.signupUser({ username: this.username.value, password: this.password.value });
+    console.log('user= ' + this.username.value);
+    console.log('password= ' + this.password.value);
+    this.props.signupUser({
+      username: this.username.value,
+      password: this.password.value
+    });
     event.preventDefault();
   }
 
@@ -95,10 +102,10 @@ class Header extends Component {
             </Nav>
             {!this.props.auth.isAuthenticated
               ?
-              <Nav className="ml-auto" navbar-right>
+              <Nav className="ml-auto">
                 <NavItem>
-                  <Button outline onClick={this.signupToggleModal}><span className="fa fa-sign-in fa-lg loginButton"></span>
-                    <span className="loginButton"> Sign up </span>
+                  <Button outline onClick={this.signupToggleModal}><span className="fa fa-sign-up fa-lg signupButton"></span>
+                    <span className="signupButton"> Sign up </span>
                   </Button>
                 </NavItem>
                 <NavItem>
@@ -112,7 +119,7 @@ class Header extends Component {
                 </NavItem>
               </Nav>
               :
-              <Nav className="ml-auto" navbar-right>
+              <Nav className="ml-auto">
                 <NavItem>
                   <span>{this.props.auth.user.username},  </span>
                   <Button outline onClick={this.handleLogout}>
@@ -164,8 +171,8 @@ class Header extends Component {
         </Modal>
       
         <Modal isOpen={this.state.isSignupModalOpen} toggle={this.signupToggleModal}>
-          <ModalHeader className="login" toggle={this.signupToggleModal}>Login</ModalHeader>
-          <ModalBody className="login">
+          <ModalHeader className="signup" toggle={this.signupToggleModal}>Sign up</ModalHeader>
+          <ModalBody className="signup">
             <Form onSubmit={this.handleSignup}>
               <FormGroup>
                 <Label htmlFor="username">Username</Label>

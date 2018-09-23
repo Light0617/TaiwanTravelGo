@@ -4,6 +4,8 @@ const User = require('../models/user');
 const passport = require('passport');
 const authenticate = require('../authenticate');
 
+const Favorites = require('../models/favorite');
+
 const cors = require('./cors');
 
 var router = express.Router();
@@ -20,7 +22,6 @@ router.post('/signup', cors.cors, (req, res, next) => {
       res.json({err: err});
     }
     else {
-      console.log(req.body);
       if (req.body.firstname)
         user.firstname = req.body.firstname;
       if (req.body.lastname)
@@ -36,9 +37,18 @@ router.post('/signup', cors.cors, (req, res, next) => {
           return ;
         }
         passport.authenticate('local')(req, res, () => {
+          console.log('userId2 = ' + JSON.stringify(req.user._id));
+          Favorites.create({user: req.user._id})
+            .then((favorite) => {
+              console.log('favorite created!');
+              console.log('favorite= ' + JSON.stringify(favorite));
+            })
+            .catch((err) => next(err));
+          var token = authenticate.getToken({_id: req.user._id});  
+          console.log('token= ' + JSON.stringify(token));
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
-          res.json({success: true, status: 'Registration Successful!'});
+          res.json({success: true, status: 'Registration Successful!', token: token});
           res.end();
         });
       });
