@@ -23,3 +23,5 @@ if you do not have yarn
 ![demo nature](./demo/nature.png)
 ![demo traveller](./demo/traveller.png)
 
+## Data flow
+![demo cover](./demo/demo.jpeg)
