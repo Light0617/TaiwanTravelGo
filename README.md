@@ -18,10 +18,10 @@ if you do not have yarn
 ### launch client on port 5000
 - `serve -s build`
 
+## Data flow
+![demo cover](./demo/demo.jpeg)
+
 ## DEMO 
 ![demo cover](./demo/home.png)
 ![demo nature](./demo/nature.png)
 ![demo traveller](./demo/traveller.png)
-
-## Data flow
-![demo cover](./demo/demo.jpeg)
